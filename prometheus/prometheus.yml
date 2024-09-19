@@ -42,4 +42,20 @@ scrape_configs:
     metrics_path: /metrics
     scheme: http
     static_configs:
-      - targets: ["10.0.0.25:9182"]      
+      - targets: ["10.0.0.25:9182"]
+  
+  - job_name: 'pve'
+    static_configs:
+      - targets:
+        - 192.168.10.200  # Proxmox VE node 1
+        - 192.168.10.201  # Proxmox VE node 2
+    metrics_path: /pve
+    params:
+      module: [default]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 10.0.0.50:9221
