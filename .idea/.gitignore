@@ -1,0 +1,9 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+prometheus/queries.active
+prometheus/chunks_head/
+prometheus/lock
+grafana/grafana.db
+prometheus/data/
+prometheus/wal/
